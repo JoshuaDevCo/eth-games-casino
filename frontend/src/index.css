@@ -1,0 +1,52 @@
+@font-face {
+  font-family: Avenir;
+  src: url("/fonts/AvenirNextCyr-Bold.woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Avenir;
+  src: url("/fonts/AvenirNextCyr-Medium.woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Avenir;
+  src: url("/fonts/AvenirNextCyr-Regular.woff");
+  font-weight: 400;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .wrapper {
+    @apply flex justify-start items-center flex-col w-full;
+  }
+  .contain {
+    @apply flex w-[90%] max-w-[1160px];
+  }
+  body {
+    @apply bg-body;
+  }
+}
+.grid-area {
+  grid-template-areas:
+    "sidebar topbar"
+    "sidebar main";
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.topbar {
+  grid-area: topbar;
+}
+.main {
+  grid-area: main;
+}
+@media screen and (max-width: 768px) {
+  .grid-area {
+    grid-template-areas:
+      "topbar topbar"
+      "main main";
+  }
+}
