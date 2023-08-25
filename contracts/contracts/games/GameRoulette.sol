@@ -36,7 +36,7 @@ contract GameRoulette is Game {
             _rolls[_i] = _roll;
         }
 
-        emit GameEnd(_betId, _randomNumbers, _rolls, _bet.betNum, _bet.stake, wins, losses, _payout, _bet.player, block.timestamp);
+        emit GameEnd(_betId, _randomNumbers, _rolls, _bet.betNum, _bet.stake, wins, /*0,*/ losses, _payout, _bet.player, block.timestamp);
         return _payout;
     }
 

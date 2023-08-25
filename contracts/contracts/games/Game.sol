@@ -25,8 +25,8 @@ abstract contract Game is IGame, Ownable {
     uint256 public minBetRate;
     
     event GameStart(uint256 indexed betId, uint256 _bet, uint256[50] _data);
-    event GameEnd(uint256 indexed betId, uint256[] _randomNumbers, uint256[] _rolls, uint256 _bet, uint256 _stake, uint256 wins, uint256 losses, uint256 _payout, address indexed _account, uint256 indexed _timestamp);
-
+    event GameEnd(uint256 indexed betId, uint256[] _randomNumbers, uint256[] _rolls, uint256 _bet, uint256 _stake, uint256 wins, /*uint256 draws,*/ uint256 losses, uint256 _payout, address indexed _account, uint256 indexed _timestamp);
+    
     constructor (address _usdt, address _vault, address _console, address _house, address _rng, uint256 _id, uint256 _numbersPerRoll) {
         usdtToken = IERC20BackwardsCompatible(_usdt);
         usdtVault = IUSDTVault(_vault);
