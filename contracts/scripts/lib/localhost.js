@@ -33,6 +33,8 @@ const deploy_localhost = async (specialAccounts) => {
     let rngInfo = totalRet.find(t => t.name === "RNG")
     let diceInfo = totalRet.find(t => t.name === "GameDice")
     let rouletteInfo = totalRet.find(t => t.name === "GameRoulette")
+    let coinflipInfo = totalRet.find(t => t.name === "GameCoinflip")
+    let rpsInfo = totalRet.find(t => t.name === "GameRPS")
 
     wbnbInfo = await deployContract("WBNB")
     totalRet = syncDeployInfo(network, "WBNB", wbnbInfo, totalRet)
@@ -77,8 +79,14 @@ const deploy_localhost = async (specialAccounts) => {
     diceInfo = await deployContract("GameDice", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 0, 1)
     totalRet = syncDeployInfo(network, "GameDice", diceInfo, totalRet)
 
-    rouletteInfo = await deployContract("GameRoulette", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 0, 1)
+    rouletteInfo = await deployContract("GameRoulette", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 1, 1)
     totalRet = syncDeployInfo(network, "GameRoulette", rouletteInfo, totalRet)
+
+    coinflipInfo = await deployContract("GameCoinflip", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 2, 1)
+    totalRet = syncDeployInfo(network, "GameCoinflip", coinflipInfo, totalRet)
+
+    rpsInfo = await deployContract("GameRPS", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 3, 1)
+    totalRet = syncDeployInfo(network, "GameRPS", rpsInfo, totalRet)
 
     let tInfo = await deployContractAndProxy("GovernableUpgradeable", "TransparentUpgradeableProxy", admin, "Governable_init", ["address", "uint256", "string"], [admin, 0, "My Test"])
     totalRet = syncDeployInfo(network, "GovernableUpgradeable", tInfo, totalRet)

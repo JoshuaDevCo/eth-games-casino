@@ -10,8 +10,8 @@ const {
 } = require("./deploy");
 const { addressZero, bytes32Zero, maxUint256 } = require("./const");
 
-const deploy_arbitrum = async () => {
-  let network = "arbitrum";
+const deploy_goerli = async () => {
+  let network = "goerli";
 
   let totalRet = [];
   try {
@@ -23,63 +23,60 @@ const deploy_arbitrum = async () => {
   // console.log(totalRet);
 
   let wbnbInfo = totalRet.find((t) => t.name === "WETH");
-  let factoryInfo = totalRet.find((t) => t.name === "PancakeFactory");
-  let routerInfo = totalRet.find((t) => t.name === "PancakeRouter");
+  let factoryInfo = totalRet.find((t) => t.name === "UniswapFactoryV2");
+  let routerInfo = totalRet.find((t) => t.name === "UniswapRouterV2");
 
   let usdtInfo = totalRet.find((t) => t.name === "USDT");
-  let tokenInfo = totalRet.find((t) => t.name === "ARBET");
-  let sArbetInfo = totalRet.find((t) => t.name === "sARBET");
+  let tokenInfo = totalRet.find((t) => t.name === "SHINO");
+  let sArbetInfo = totalRet.find((t) => t.name === "sSHINO");
   let consoleInfo = totalRet.find((t) => t.name === "Console");
   let vaultInfo = totalRet.find((t) => t.name === "USDTVault");
   let houseInfo = totalRet.find((t) => t.name === "House");
   let rngInfo = totalRet.find((t) => t.name === "RNG");
   let diceInfo = totalRet.find((t) => t.name === "GameDice");
   let rouletteInfo = totalRet.find((t) => t.name === "GameRoulette");
+  let coinflipInfo = totalRet.find((t) => t.name === "GameCoinflip");
+  let rpsInfo = totalRet.find((t) => t.name === "GameCoinflip");
 
-  wbnbInfo = {
-    name: "WETH",
-    imple: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
-  };
+  // ilesoviy
+  // wbnbInfo = {
+  //   name: "WETH",
+  //   imple: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+  // };
   totalRet = syncDeployInfo(network, "WETH", wbnbInfo, totalRet);
 
-  factoryInfo = {
-    name: "PancakeFactory",
-    imple: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4",
-  };
-  totalRet = syncDeployInfo(network, "PancakeFactory", factoryInfo, totalRet);
+  // factoryInfo = {
+  //   name: "UniswapFactoryV2",
+  //   imple: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
+  // };
+  totalRet = syncDeployInfo(network, "UniswapFactoryV2", factoryInfo, totalRet);
 
-  routerInfo = {
-    name: "PancakeRouter",
-    imple: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
-  };
-  totalRet = syncDeployInfo(network, "PancakeRouter", routerInfo, totalRet);
+  // routerInfo = {
+  //   name: "UniswapRouterV2",
+  //   imple: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+  // };
+  totalRet = syncDeployInfo(network, "UniswapRouterV2", routerInfo, totalRet);
 
-  usdtInfo = {
-    name: "USDT",
-    imple: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
-  };
+  // usdtInfo = {
+  //   name: "USDT",
+  //   imple: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+  // };
   totalRet = syncDeployInfo(network, "USDT", usdtInfo, totalRet);
 
-  const accounts = await hre.ethers.getSigners()
-  const value = await hre.ethers.provider.getBalance(accounts[0].address)
-  console.log('account 0 ETH', value.toString())
-
-  tokenInfo = await deployContract(
-    "SHINO",
-    routerInfo.imple,
-    "Arbetrum Casino",
-    "ARBET"
-  );
-  totalRet = syncDeployInfo(network, "ARBET", tokenInfo, totalRet);
+  // tokenInfo = {
+  //   name: "SHINO",
+  //   imple: "0xe31a4E5042321204c44a280C01b34b6192F4ABd9",
+  // };
+  totalRet = syncDeployInfo(network, "SHINO", tokenInfo, totalRet);
 
   sArbetInfo = await deployContract(
     "sArbet",
     tokenInfo.imple,
     usdtInfo.imple,
-    "Staked ARBET",
-    "sARBET"
+    "Staked SHINO",
+    "sSHINO"
   );
-  totalRet = syncDeployInfo(network, "sARBET", sArbetInfo, totalRet);
+  totalRet = syncDeployInfo(network, "sSHINO", sArbetInfo, totalRet);
 
   consoleInfo = await deployContract("Console");
   totalRet = syncDeployInfo(network, "Console", consoleInfo, totalRet);
@@ -126,8 +123,34 @@ const deploy_arbitrum = async () => {
   );
   totalRet = syncDeployInfo(network, "GameRoulette", rouletteInfo, totalRet);
 
-  const ARBET = await hre.ethers.getContractFactory("SHINO");
-  tokenContract = await ARBET.attach(tokenInfo.imple);
+  coinflipInfo = await deployContract(
+    "GameCoinflip",
+    usdtInfo.imple,
+    vaultInfo.imple,
+    consoleInfo.imple,
+    houseInfo.imple,
+    rngInfo.imple,
+    2,
+    1
+  );
+  totalRet = syncDeployInfo(network, "GameCoinflip", coinflipInfo, totalRet);
+
+  rpsInfo = await deployContract(
+    "GameRPS",
+    usdtInfo.imple,
+    vaultInfo.imple,
+    consoleInfo.imple,
+    houseInfo.imple,
+    rngInfo.imple,
+    3,
+    1
+  );
+  totalRet = syncDeployInfo(network, "GameRPS", rpsInfo, totalRet);
+
+
+
+  const SHINO = await hre.ethers.getContractFactory("SHINO");
+  tokenContract = await SHINO.attach(tokenInfo.imple);
 
   const sSHINO = await hre.ethers.getContractFactory("sArbet");
   sArbetContract = await sSHINO.attach(sArbetInfo.imple);
@@ -153,9 +176,12 @@ const deploy_arbitrum = async () => {
   const Roulette = await hre.ethers.getContractFactory("GameRoulette");
   rouletteContract = await Roulette.attach(rouletteInfo.imple);
 
-  await rngContract.updateChainlink(
-    "0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612"
-  );
+  const Coinflip = await hre.ethers.getContractFactory("GameCoinflip");
+  coinflipContract = await Coinflip.attach(coinflipInfo.imple);
+
+  const RPS = await hre.ethers.getContractFactory("GameRPS");
+  rpsContract = await RPS.attach(rpsInfo.imple);
+
   await rngContract.updateRandSeed(new Date().getTime());
   await rngContract.shuffleRandomNumbers();
 
@@ -166,6 +192,10 @@ const deploy_arbitrum = async () => {
   await vaultContract.addToGameContractList(diceContract.address);
   await consoleContract.addGame(true, "Roulette", 1, rouletteContract.address);
   await vaultContract.addToGameContractList(rouletteContract.address);
+  await consoleContract.addGame(true, "Coinflip", 1, coinflipContract.address);
+  await vaultContract.addToGameContractList(coinflipContract.address);
+  await consoleContract.addGame(true, "RPS", 1, rpsContract.address);
+  await vaultContract.addToGameContractList(rpsContract.address);
 };
 
-module.exports = { deploy_arbitrum };
+module.exports = { deploy_goerli };

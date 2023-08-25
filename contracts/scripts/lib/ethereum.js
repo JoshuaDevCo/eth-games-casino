@@ -35,6 +35,8 @@ const deploy_ethereum = async () => {
   let rngInfo = totalRet.find((t) => t.name === "RNG");
   let diceInfo = totalRet.find((t) => t.name === "GameDice");
   let rouletteInfo = totalRet.find((t) => t.name === "GameRoulette");
+  let coinflipInfo = totalRet.find((t) => t.name === "GameCoinflip");
+  let rpsInfo = totalRet.find((t) => t.name === "GameCoinflip");
 
   wbnbInfo = {
     name: "WETH",
@@ -120,6 +122,32 @@ const deploy_ethereum = async () => {
   );
   totalRet = syncDeployInfo(network, "GameRoulette", rouletteInfo, totalRet);
 
+  coinflipInfo = await deployContract(
+    "GameCoinflip",
+    usdtInfo.imple,
+    vaultInfo.imple,
+    consoleInfo.imple,
+    houseInfo.imple,
+    rngInfo.imple,
+    2,
+    1
+  );
+  totalRet = syncDeployInfo(network, "GameCoinflip", rouletteInfo, totalRet);
+
+  rpsInfo = await deployContract(
+    "GameRPS",
+    usdtInfo.imple,
+    vaultInfo.imple,
+    consoleInfo.imple,
+    houseInfo.imple,
+    rngInfo.imple,
+    3,
+    1
+  );
+  totalRet = syncDeployInfo(network, "GameRPS", rpsInfo, totalRet);
+
+
+
   const SHINO = await hre.ethers.getContractFactory("SHINO");
   tokenContract = await SHINO.attach(tokenInfo.imple);
 
@@ -147,6 +175,12 @@ const deploy_ethereum = async () => {
   const Roulette = await hre.ethers.getContractFactory("GameRoulette");
   rouletteContract = await Roulette.attach(rouletteInfo.imple);
 
+  const Coinflip = await hre.ethers.getContractFactory("GameCoinflip");
+  rouletteContract = await Coinflip.attach(coinflipInfo.imple);
+
+  const RPS = await hre.ethers.getContractFactory("GameRPS");
+  rouletteContract = await RPS.attach(rpsInfo.imple);
+
   await rngContract.updateChainlink(
     "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
   );
@@ -160,6 +194,10 @@ const deploy_ethereum = async () => {
   await vaultContract.addToGameContractList(diceContract.address);
   await consoleContract.addGame(true, "Roulette", 1, rouletteContract.address);
   await vaultContract.addToGameContractList(rouletteContract.address);
+  await consoleContract.addGame(true, "Coinflip", 1, coinflipContract.address);
+  await vauleContract.addToGameContractList(coinflipContract.address);
+  await consoleContract.addGame(true, "RPS", 1, rpsContract.address);
+  await vaultContract.addToGameContractList(rpsContract.address);
 };
 
 module.exports = { deploy_ethereum };

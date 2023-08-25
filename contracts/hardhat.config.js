@@ -1,7 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 
 const {
-  BSC_TESTNET_DEPLOYER_KEY,
+  GOERLI_DEPLOYER_KEY,
   ETHEREUM_DEPLOY_KEY
 } = require("./env.json")
 
@@ -19,26 +19,26 @@ task("accounts", "Prints the list of accounts", async () => {
 module.exports = {
   networks: {
     localhost: {
-      url: "http://127.0.0.1:7545",
-      chainId: 1337,
+      url: "http://127.0.0.1:8545",
+      chainId: 31337,
       gasPrice: 10000000000,
-      accounts: ['0x9b11242d64e39d91f7c37f248692a13e75d00f4591c6e52177e7784ada18ea7e', '0xa24f0a2d148db4bd5a2355a57d167946dcb6a4fbf99d8146ec91aa2630add6a3'],
+      // accounts: ['0x9b11242d64e39d91f7c37f248692a13e75d00f4591c6e52177e7784ada18ea7e', '0xa24f0a2d148db4bd5a2355a57d167946dcb6a4fbf99d8146ec91aa2630add6a3'],
       timeout: 120000
     },
     hardhat: {
       // allowUnlimitedContractSize: true
     },
-    // bsc: {
-    //   url: "",
-    //   chainId: 56,
-    //   gasPrice: 10000000000,
-    //   accounts: ['0x']
-    // },
     // bsctestnet: {
     //   url: "https://data-seed-prebsc-1-s3.binance.org:8545/",
     //   chainId: 97,
     //   gasPrice: 20000000000,
     //   accounts: [BSC_TESTNET_DEPLOYER_KEY]
+    // },
+    // bsc: {
+    //   url: "",
+    //   chainId: 56,
+    //   gasPrice: 10000000000,
+    //   accounts: ['0x']
     // },
     // arbitrumTestnet: {
     //   url: "",
@@ -64,12 +64,18 @@ module.exports = {
     //   chainId: 137,
     //   accounts: [POLYGON_DEPLOY_KEY]
     // },
-    // ethereum: {
-    //   url: 'https://mainnet.infura.io/v3/7535811d19b1410e98c261fbb638651a',
-    //   chainId: 1,
-    //   gasPrice: 61500000000,
-    //   accounts: [ETHEREUM_DEPLOY_KEY]
-    // }
+    goerli: {
+      url: "https://goerli.infura.io/v3/f2c3624a719d49cf83f59034a3ed28dd",
+      chainId: 5,
+      gasPrice: 200000000,
+      accounts: [GOERLI_DEPLOYER_KEY]
+    },
+    ethereum: {
+      url: 'https://mainnet.infura.io/v3/7535811d19b1410e98c261fbb638651a',
+      chainId: 1,
+      gasPrice: 61500000000,
+      accounts: [ETHEREUM_DEPLOY_KEY]
+    }
   },
   etherscan: {
     apiKey: {

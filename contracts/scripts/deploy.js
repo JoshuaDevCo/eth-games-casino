@@ -6,10 +6,8 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 const { deploy_localhost } = require("./lib/localhost")
-const { deploy_bsctestnet } = require("./lib/bsctestnet")
+const { deploy_goerli } = require("./lib/goerli")
 const { deploy_ethereum } = require("./lib/ethereum")
-const { deploy_bscmainnet } = require("./lib/bscmainnet")
-const { deploy_arbitrum } = require("./lib/arbitrum")
 
 async function main() {
   const accounts = await hre.ethers.getSigners()
@@ -30,14 +28,10 @@ async function main() {
       pancakeFeeSetter: accounts[accounts.length - 1].address,
       admin: accounts[1].address
     })
-  } else if (hre.network.name === "bsctestnet") {
-    await deploy_bsctestnet()
+  } else if (hre.network.name === "goerli") {
+    await deploy_goerli()
   } else if (hre.network.name === "ethereum") {
     await deploy_ethereum()
-  } else if (hre.network.name === "arbitrum") {
-    await deploy_arbitrum()
-  } else if (hre.network.name === "bscmainnet") {
-    await deploy_bscmainnet()
   }
 }
 
