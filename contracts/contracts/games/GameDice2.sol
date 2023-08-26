@@ -13,7 +13,7 @@ contract GameDice2 is Game {
     function finalize(uint256 _betId, uint256[] memory _randomNumbers) internal virtual override returns (uint256) {
         Types.Bet memory _bet = house.getBet(_betId);
         uint256 _betNum = _bet.betNum;
-        uint256 _payout = 0;
+        uint256 _payout = 0; // ilesoviy - added initialization
         uint256[] memory _rolls = new uint256[](_bet.rolls);
 
         emit GameStart(_betId, _betNum, _bet.data);
@@ -28,7 +28,7 @@ contract GameDice2 is Game {
         uint256 losses = 0;
 
         for (uint256 _i = 0; _i < _bet.rolls; _i++) {
-            uint256 _roll = rng.getModulo(_randomNumbers[_i], 0, 100);
+            uint256 _roll = rng.getModulo(_randomNumbers[_i], 0, 99);
             if (_roll > _betNum) {
                 _payout += _bet.stake * payoutRatio / PAYOUT_AMPLIFIER;
                 wins ++;

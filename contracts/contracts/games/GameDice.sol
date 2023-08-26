@@ -25,16 +25,19 @@ contract GameDice is Game {
 
         for (uint256 _i = 0; _i < _bet.rolls; _i++) {
             uint256 _roll = rng.getModulo(_randomNumbers[_i], 0, 5);
+            uint256 _j;
 
             // _data[6] points to number of valid items in _data
-            for (uint256 _j = 0; _j < _bets[6]; _j++) {
+            for (_j = 0; _j < _bets[6]; _j++) {
                 if (_roll == _bets[_j]) {
                     _payout += _bet.stake * payoutRatio / PAYOUT_AMPLIFIER;
                     wins ++;
                     break;
-                } else {
-                    losses ++;
                 }
+            }
+
+            if (_j == _bets[6]) {
+                losses ++;
             }
 
             _rolls[_i] = _roll;

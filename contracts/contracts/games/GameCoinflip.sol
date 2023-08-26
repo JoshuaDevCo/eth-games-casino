@@ -23,7 +23,7 @@ contract GameCoinflip is Game {
         uint256 losses = 0;
 
         for (uint256 _i = 0; _i < _bet.rolls; _i++) {
-            uint256 _roll = rng.getModulo(_randomNumbers[_i], 0, 1);
+            uint256 _roll = rng.getModulo(_randomNumbers[_i], 1, 2); // To avoid 0 (not used)
             if (_roll == _betNum) {
                 _payout += _bet.stake * payoutRatio / PAYOUT_AMPLIFIER;
                 wins ++;

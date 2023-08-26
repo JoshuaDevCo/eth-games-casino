@@ -31,10 +31,11 @@ const deploy_localhost = async (specialAccounts) => {
     let vaultInfo = totalRet.find(t => t.name === "USDTVault")
     let houseInfo = totalRet.find(t => t.name === "House")
     let rngInfo = totalRet.find(t => t.name === "RNG")
-    let diceInfo = totalRet.find(t => t.name === "GameDice")
+    let dice2Info = totalRet.find(t => t.name === "GameDice2")
     let rouletteInfo = totalRet.find(t => t.name === "GameRoulette")
     let coinflipInfo = totalRet.find(t => t.name === "GameCoinflip")
     let rpsInfo = totalRet.find(t => t.name === "GameRPS")
+    let diceInfo = totalRet.find(t => t.name === "GameDice")
 
     wbnbInfo = await deployContract("WBNB")
     totalRet = syncDeployInfo(network, "WBNB", wbnbInfo, totalRet)
@@ -76,8 +77,8 @@ const deploy_localhost = async (specialAccounts) => {
     houseInfo = await deployContract("House", vaultInfo.imple, usdtInfo.imple, consoleInfo.imple)
     totalRet = syncDeployInfo(network, "House", houseInfo, totalRet)
 
-    diceInfo = await deployContract("GameDice", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 0, 1)
-    totalRet = syncDeployInfo(network, "GameDice", diceInfo, totalRet)
+    dice2Info = await deployContract("GameDice2", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 0, 1)
+    totalRet = syncDeployInfo(network, "GameDice2", dice2Info, totalRet)
 
     rouletteInfo = await deployContract("GameRoulette", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 1, 1)
     totalRet = syncDeployInfo(network, "GameRoulette", rouletteInfo, totalRet)
@@ -87,6 +88,9 @@ const deploy_localhost = async (specialAccounts) => {
 
     rpsInfo = await deployContract("GameRPS", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 3, 1)
     totalRet = syncDeployInfo(network, "GameRPS", rpsInfo, totalRet)
+
+    diceInfo = await deployContract("GameDice", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 4, 1)
+    totalRet = syncDeployInfo(network, "GameDice", diceInfo, totalRet)
 
     let tInfo = await deployContractAndProxy("GovernableUpgradeable", "TransparentUpgradeableProxy", admin, "Governable_init", ["address", "uint256", "string"], [admin, 0, "My Test"])
     totalRet = syncDeployInfo(network, "GovernableUpgradeable", tInfo, totalRet)

@@ -38,7 +38,7 @@ const deploy_goerli = async () => {
   let coinflipInfo = totalRet.find((t) => t.name === "GameCoinflip");
   let rpsInfo = totalRet.find((t) => t.name === "GameCoinflip");
 
-  // ilesoviy
+  // ilesoviy - Why are the following informations repeated?
   // wbnbInfo = {
   //   name: "WETH",
   //   imple: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",

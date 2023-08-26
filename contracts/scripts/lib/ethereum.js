@@ -176,14 +176,14 @@ const deploy_ethereum = async () => {
   rouletteContract = await Roulette.attach(rouletteInfo.imple);
 
   const Coinflip = await hre.ethers.getContractFactory("GameCoinflip");
-  rouletteContract = await Coinflip.attach(coinflipInfo.imple);
+  coinflipContract = await Coinflip.attach(coinflipInfo.imple);
 
   const RPS = await hre.ethers.getContractFactory("GameRPS");
-  rouletteContract = await RPS.attach(rpsInfo.imple);
+  rpsContract = await RPS.attach(rpsInfo.imple);
 
-  await rngContract.updateChainlink(
-    "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
-  );
+  // await rngContract.updateChainlink(
+  //   "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+  // );
   await rngContract.updateRandSeed(new Date().getTime());
   await rngContract.shuffleRandomNumbers();
 
