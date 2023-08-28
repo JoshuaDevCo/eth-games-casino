@@ -1,0 +1,18 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ILPFeeReceiver",
+  "sourceName": "contracts/interfaces/ILPFeeReceiver.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "depositYield",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

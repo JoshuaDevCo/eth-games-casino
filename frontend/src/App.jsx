@@ -9,6 +9,8 @@ import Rouelette from "./pages/roulette/Index";
 import CoinFlip from "./pages/coin-flip/Index";
 import Dice from "./pages/dice/Index";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -32,6 +34,7 @@ const App = () => {
 
         <Footer />
       </div>
+      <ToastContainer />
     </div>
   );
 };
