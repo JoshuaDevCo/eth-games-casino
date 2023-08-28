@@ -51,8 +51,8 @@ contract GameRPS is Game {
         uint256 losses = 0;
 
         for (uint256 _i = 0; _i < _bet.rolls; _i++) {
-            uint256 _roll = rng.generateModulo(0, 2);
-            uint256 result = decide(_randomNumbers[_i], _roll);
+            uint256 _roll = rng.getModulo(_randomNumbers[_i], 1, 3); // To avoid 0 (not used)
+            uint256 result = decide(_betNum, _roll);
 
             if (result == WIN) {
                 _payout += _bet.stake * payoutRatio * 2 / PAYOUT_AMPLIFIER;

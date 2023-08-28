@@ -31,7 +31,7 @@ const deploy_localhost = async (specialAccounts) => {
     let vaultInfo = totalRet.find(t => t.name === "USDTVault")
     let houseInfo = totalRet.find(t => t.name === "House")
     let rngInfo = totalRet.find(t => t.name === "RNG")
-    let dice2Info = totalRet.find(t => t.name === "GameDice2")
+    // let dice2Info = totalRet.find(t => t.name === "GameDice2")
     let rouletteInfo = totalRet.find(t => t.name === "GameRoulette")
     let coinflipInfo = totalRet.find(t => t.name === "GameCoinflip")
     let rpsInfo = totalRet.find(t => t.name === "GameRPS")
@@ -77,8 +77,8 @@ const deploy_localhost = async (specialAccounts) => {
     houseInfo = await deployContract("House", vaultInfo.imple, usdtInfo.imple, consoleInfo.imple)
     totalRet = syncDeployInfo(network, "House", houseInfo, totalRet)
 
-    dice2Info = await deployContract("GameDice2", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 0, 1)
-    totalRet = syncDeployInfo(network, "GameDice2", dice2Info, totalRet)
+    // dice2Info = await deployContract("GameDice2", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 0, 1)
+    // totalRet = syncDeployInfo(network, "GameDice2", dice2Info, totalRet)
 
     rouletteInfo = await deployContract("GameRoulette", usdtInfo.imple, vaultInfo.imple, consoleInfo.imple, houseInfo.imple, rngInfo.imple, 1, 1)
     totalRet = syncDeployInfo(network, "GameRoulette", rouletteInfo, totalRet)

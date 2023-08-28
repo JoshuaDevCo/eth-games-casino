@@ -40,34 +40,10 @@ module.exports = {
     //   gasPrice: 10000000000,
     //   accounts: ['0x']
     // },
-    // arbitrumTestnet: {
-    //   url: "",
-    //   gasPrice: 10000000000,
-    //   chainId: 421611,
-    //   accounts: ['0x']
-    // },
-    // arbitrum: {
-    //   url: 'https://arb1.arbitrum.io/rpc', //"https://rpc.ankr.com/arbitrum",
-    //   gasPrice: 100000000,
-    //   chainId: 42161,
-    //   accounts: [ETHEREUM_DEPLOY_KEY]
-    // },
-    // avax: {
-    //   url: AVAX_URL,
-    //   gasPrice: 200000000000,
-    //   chainId: 43114,
-    //   accounts: [AVAX_DEPLOY_KEY]
-    // },
-    // polygon: {
-    //   url: POLYGON_URL,
-    //   gasPrice: 100000000000,
-    //   chainId: 137,
-    //   accounts: [POLYGON_DEPLOY_KEY]
-    // },
     goerli: {
       url: "https://goerli.infura.io/v3/f2c3624a719d49cf83f59034a3ed28dd",
       chainId: 5,
-      gasPrice: 200000000,
+      gasPrice: 51000000000,
       accounts: [GOERLI_DEPLOYER_KEY]
     },
     ethereum: {
@@ -80,10 +56,7 @@ module.exports = {
   etherscan: {
     apiKey: {
       // mainnet: MAINNET_DEPLOY_KEY,
-      // arbitrumOne: ARBISCAN_API_KEY,
-      // avalanche: SNOWTRACE_API_KEY,
       // bsc: BSCSCAN_API_KEY,
-      // polygon: POLYGONSCAN_API_KEY,
     }
   },
   solidity: {
