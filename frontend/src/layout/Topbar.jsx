@@ -149,7 +149,7 @@ const Topbar = ({walletConnect, setWalletConnect}) => {
                 className="w-[17px] object-contain"
                 alt=""
               />
-              { !isLoggedIn() ? 'Connect Wallet' : isWrongChain() ? "Switch Chain" : `Logout ${wallet.address.slice(0, 6) + '...' + wallet.address.slice(-5)}` }
+              { !isLoggedIn() ? 'Connect Wallet' : isWrongChain() ? "Switch Chain" : `Logout ${wallet.address.slice(0, 5) + '...' + wallet.address.slice(-4)}` }
             </button>
             <button
               onClick={() => setToggleSidebar(true)}

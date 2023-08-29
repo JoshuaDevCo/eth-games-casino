@@ -39,7 +39,7 @@ const Sidebar = () => {
           link="/roulette"
         />
       </div> */}
-      <div className="py-[30px] md:flex hidden sidebar overflow-y-auto overflow-x-hidden sticky top-0 h-screen w-full bg-dark  z-50 justify-between items-center flex-col gap-5">
+      <div className="py-[30px] md:flex hidden sidebar overflow-y-auto overflow-x-hidden sticky top-0 h-screen w-full bg-dark  z-50 justify-start items-center flex-col gap-5">
         <Link to="/">
           <img
             src="/logo.png"
@@ -47,7 +47,7 @@ const Sidebar = () => {
             alt=""
           />
         </Link>
-        <div className="  flex gap-5 justify-center items-center flex-col w-full">
+        <div className="flex gap-5 justify-center items-center flex-col w-full">
           {/* <SidebarItem
             ico="/sidebar/games.svg"
             activeIco="/sidebar/games-active.svg"
@@ -153,15 +153,16 @@ const GamesLink = ({ ico, name, link, setGamesBar }) => {
     >
       <div className="bg-accent w-0.5 h-0 group-hover:h-full absolute right-0 top-[60%] -translate-y-1/2 transition-all duration-300 shadow-sidebarItem"></div>
 
-      <img
-        src={ico}
-        className="w-[30px] group-hover:brightness-200 object-contain"
-        alt=""
-      />
-
-      <p className="text-text group-hover:text-white transition-all font-bold text-sm">
-        {name}
-      </p>
+      <div className="w-full flex flex-col items-center">
+        <img
+          src={ico}
+          className="w-[30px] group-hover:brightness-200 object-contain"
+          alt=""
+        />
+        <p className="text-text group-hover:text-white transition-all font-bold text-sm">
+          {name}
+        </p>
+      </div>
     </Link>
   );
 };
