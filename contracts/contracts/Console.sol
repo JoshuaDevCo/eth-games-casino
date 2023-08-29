@@ -30,7 +30,7 @@ contract Console is IConsole, Ownable {
     }
 
     function editGame(uint256 _id, bool _live, string memory _name, uint256 _edge, address _impl) external onlyOwner {
-        if(games[_id].date == 0) {
+        if (games[_id].date == 0) {
             revert GameNotFound(_id);
         }
 

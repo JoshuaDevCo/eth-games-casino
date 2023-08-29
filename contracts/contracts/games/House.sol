@@ -54,7 +54,7 @@ contract House is IHouse, Ownable {
     }
 
     function openWager(address _account, uint256 _gameId, uint256 _rolls, uint256 _bet, uint256[50] calldata _data, uint256 _stake, uint256 _maxPayout) external returns (uint256, uint256) {
-        if(!initialized) {
+        if (!initialized) {
             revert NotInitialized();
         }
 
@@ -67,7 +67,7 @@ contract House is IHouse, Ownable {
 
         uint256 _betSize = _stake * _rolls;
         uint256 _betSizeWithFee = (_stake + calculateBetFee(_stake)) * _rolls;
-        if(_betSizeWithFee > usdtToken.balanceOf(usdtVault)) {
+        if (_betSizeWithFee > usdtToken.balanceOf(usdtVault)) {
             revert InsufficientVault(_betSize, usdtToken.balanceOf(usdtVault));
         }
 
@@ -79,21 +79,21 @@ contract House is IHouse, Ownable {
                 maxBetPrize = _betSize * (_maxPayout - PAYOUT_AMPLIFIER) / PAYOUT_AMPLIFIER;
             }
 
-            if(maxBetPrize > betLimit) {
+            if (maxBetPrize > betLimit) {
                 revert MaxBetExceeded(maxBetPrize, betLimit);
             }
         }
 
         {
             uint256 userBalance = usdtToken.balanceOf(_account);
-            if(_betSizeWithFee > userBalance) {
+            if (_betSizeWithFee > userBalance) {
                 revert InsufficientUSDBalance(_betSizeWithFee, userBalance);
             }
         }
 
         {
             uint256 userAllowance = usdtToken.allowance(_account, address(this));
-            if(_betSizeWithFee > userAllowance) {
+            if (_betSizeWithFee > userAllowance) {
                 revert InsufficientUSDAllowance(_betSizeWithFee, userAllowance);
             }
         }
@@ -124,7 +124,7 @@ contract House is IHouse, Ownable {
 
         // validate bet
         Types.Bet memory _bet = bets[betId];
-        if(_bet.complete) {
+        if (_bet.complete) {
             revert BetCompleted(betId);
         }
 
@@ -138,7 +138,7 @@ contract House is IHouse, Ownable {
         players[_account].games[_gameId].betCount += 1;
         players[_account].games[_gameId].wagers += _bet.stake * _bet.rolls;
 
-        if(_payout > _bet.stake) {
+        if (_payout > _bet.stake) {
             uint256 _profit = _payout - _bet.stake;
 
             players[_account].info.profits += _profit;
