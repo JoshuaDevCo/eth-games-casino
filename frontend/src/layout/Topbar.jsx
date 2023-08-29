@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Topbar = () => {
+import { WalletConnect } from '../components/WalletConnect'
+import { useCustomWallet } from '../contexts/WalletContext';
+
+const Topbar = ({walletConnect, setWalletConnect}) => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
+
+  const { disconnectWallet, connectWalletByConfig, isLoggedIn, isWrongChain, wallet } = useCustomWallet();
+
   return (
     <>
       {toggleSidebar && (
@@ -136,13 +142,14 @@ const Topbar = () => {
               className="sm:hidden block w-[28px] object-contain"
               alt=""
             />
-            <button className="hidden sm:flex text-white font-bold text-xs justify-center items-center gap-2">
+            <button className={`hidden sm:flex text-white font-bold text-xs justify-center items-center gap-2 ${!isLoggedIn() || isWrongChain()? 'text-sm': 'text-xs'}`}
+              onClick={() => !isLoggedIn() ? setWalletConnect(true) : isWrongChain()? connectWalletByConfig(): disconnectWallet() }>
               <img
                 src="/wallet.svg"
                 className="w-[17px] object-contain"
                 alt=""
               />
-              Connect Wallet
+              { !isLoggedIn() ? 'Connect Wallet' : isWrongChain() ? "Switch Chain" : `Logout ${wallet.address.slice(0, 6) + '...' + wallet.address.slice(-5)}` }
             </button>
             <button
               onClick={() => setToggleSidebar(true)}
@@ -158,6 +165,7 @@ const Topbar = () => {
           </div>
         </div>
       </div>
+      {walletConnect === true && <WalletConnect close={() => setWalletConnect(false)} />}
     </>
   );
 };

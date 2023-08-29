@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import BottomBar from "./layout/BottomBar";
 import Footer from "./layout/Footer";
@@ -14,13 +15,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const { pathname } = useLocation();
+  const [walletConnect, setWalletConnect] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
     <div className="grid sm:pb-0 pb-[70px] grid-area grid-cols-[100px__1fr] grid-rows-[80px__1fr] sm:grid-rows-[40px__1fr] w-full">
-      <Topbar />
+      <Topbar walletConnect={walletConnect} setWalletConnect={setWalletConnect} />
       <Sidebar />
       <BottomBar />
       <div className="main wrapper pb-10 pt-5 sm:py-10">
