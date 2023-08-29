@@ -24,7 +24,7 @@ contract GameDice is Game {
         uint256 losses = 0;
 
         for (uint256 _i = 0; _i < _bet.rolls; _i++) {
-            uint256 _roll = rng.getModulo(_randomNumbers[_i], 0, 5);
+            uint256 _roll = rng.getModulo(_randomNumbers[_i], 1, 6);
             uint256 _j;
 
             // _data[6] points to number of valid items in _data
@@ -52,7 +52,7 @@ contract GameDice is Game {
             revert InvalidBet(_bet);
         }
         // _data[6] points to number of valid items in _data
-        if (_data[6] == 0 || _data[6] >= 6)
+        if (_data[6] > 6)
             revert InvalidData(_stake, _data);
         
         for (uint256 _i = 0; _i < _data[6]; _i++) {
@@ -64,6 +64,10 @@ contract GameDice is Game {
     }
 
     function getMaxPayout(uint256, uint256[50] memory _data) public virtual override view returns (uint256) {
+        if (_data[6] == 0) {
+            return 0;
+        }
+
         Types.Game memory ga = consoleInst.getGame(id);
         return 6 * (100 - ga.edge) * PAYOUT_AMPLIFIER / (100 * _data[6]);
     }

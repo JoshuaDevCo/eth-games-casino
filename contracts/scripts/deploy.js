@@ -21,7 +21,7 @@ async function main() {
         // getBalance returns wei amount, format to ETH amount
         await provider.getBalance(account.address)
       )
-    );
+    )
   }
   if (hre.network.name === "hardhat" || hre.network.name === "localhost") {
     await deploy_localhost({
@@ -38,6 +38,6 @@ async function main() {
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+  console.error(error)
+  process.exitCode = 1
+})
