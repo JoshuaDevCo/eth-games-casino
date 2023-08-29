@@ -27,7 +27,7 @@ export const WalletProvider = (props) => {
         chainId: 0
     });
 
-    const configuredChainId = useMemo(() => parseInt(walletConfig[chainId].chainId, 16), [globalChainId])
+    const configuredChainId = useMemo(() => parseInt(walletConfig[globalChainId].chainId, 16), [globalChainId])
 
     const {
         library,

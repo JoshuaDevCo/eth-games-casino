@@ -3,7 +3,7 @@ import NftCard from "../../components/NftCard";
 const Home = () => {
   return (
     <div className="contain justify-start items-start flex-col gap-6">
-      <div className="hidden sm:flex justify-between items-center w-full gap-5">
+      {/* <div className="hidden sm:flex justify-between items-center w-full gap-5">
         <img src="/logo.png" className="object-contain w-[133px]" alt="" />
         <div className="flex justify-center items-center gap-5">
           <button className="flex justify-center items-center gap-[10px] text-white bg-[#036837] border border-solid border-[#036837] uppercase h-10 px-5 font-medium text-xs rounded-md">
@@ -17,7 +17,7 @@ const Home = () => {
             <img src="/rocket.svg" className="w-5 object-contain" alt="" /> Earn
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="grid grid-cols-1 place-items-center lg:grid-cols-3 gap-4 lg:gap-8 w-full">
         <TopCard />
         <TopCard />

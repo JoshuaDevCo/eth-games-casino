@@ -18,6 +18,7 @@ import walletConfig from '../WalletContext/config'
 import ADDRESS from './address'
 import axios from 'axios'
 import qs from 'qs'
+import { ethers } from "ethers";
 
 import BigNumber from 'bignumber.js'
 import { useGlobal } from '../GlobalContext'
@@ -718,7 +719,7 @@ export const ContractProvider = ({ children }) => {
       
       return BigNumber(ret.toString()).div(BigNumber('1e24')).toFixed(10)
     },
-    [A2D, chainId, web3Provider],
+    [A2D, chainId, callProvider],
   )
 
   const playDice = useCallback(
@@ -1055,6 +1056,8 @@ export const ContractProvider = ({ children }) => {
         if (ac.signal.aborted === false) {
           dispatch(setDiceHouseAllowance(r.toString()))
           dispatch(setRouletteHouseAllowance(r.toString()))
+          dispatch(setCoinflipHouseAllowance(r.toString()))
+          dispatch(setRPSHouseAllowance(r.toString()))
         }
       })
       .catch((err) => {
@@ -1106,6 +1109,8 @@ export const ContractProvider = ({ children }) => {
     dispatch(setHouse(ADDRESS[chainId].house))
     dispatch(setDice(ADDRESS[chainId].dice))
     dispatch(setRoulette(ADDRESS[chainId].roulette))
+    dispatch(setCoinflip(ADDRESS[chainId].coinflip))
+    dispatch(setRPS(ADDRESS[chainId].rps))
 
     dispatch(setDexURL(walletConfig[chainId].ex.dex))
     dispatch(setTelegramURL(walletConfig[chainId].ex.telegram))

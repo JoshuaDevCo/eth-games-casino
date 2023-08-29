@@ -28,7 +28,7 @@ const Topbar = () => {
             <img src="/cross.svg" className="w-3 object-contain" alt="" />
           </button>
         </div>
-        <div className=" flex mt-8 justify-center flex-col items-center w-full gap-3">
+        {/* <div className=" flex mt-8 justify-center flex-col items-center w-full gap-3">
           <button className="flex justify-center items-center gap-[10px] text-white bg-[#036837] border border-solid border-[#036837] uppercase h-10 px-5 w-full font-bold text-xs rounded-md">
             <img src="/trophy.svg" className="w-5 object-contain" alt="" />{" "}
             Contest
@@ -39,12 +39,12 @@ const Topbar = () => {
           <button className="flex justify-center items-center gap-[10px] text-white bg-accent border border-solid border-accent uppercase h-10 px-5 w-full font-bold text-xs rounded-md">
             <img src="/rocket.svg" className="w-5 object-contain" alt="" /> Earn
           </button>
-        </div>
+        </div> */}
         <div className="flex w-full flex-col border-t gap-5 border-solid border-black mt-[120px] py-5 justify-start items-start">
           <div className="flex justify-start items-center gap-3">
             <p className="text-primary text-sm font-bold">Built on:</p>
             <img
-              src="/winr-logo.png"
+              src="/winr-logo.svg"
               className="w-[60px] object-contain"
               alt=""
             />

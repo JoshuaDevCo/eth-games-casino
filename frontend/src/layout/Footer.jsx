@@ -7,7 +7,7 @@ const Footer = () => {
           <div className="flex justify-start items-center gap-3">
             <p className="text-primary text-base font-bold">Built on:</p>
             <img
-              src="/winr-logo.png"
+              src="/winr-logo.svg"
               className="w-[60px] object-contain"
               alt=""
             />

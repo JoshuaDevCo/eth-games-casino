@@ -11,8 +11,8 @@ const ipfs = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 export const GlobalProvider = ({ children }) => {
 
-  const [chainIndex, setChainIndex] = useState(2)
-  const [chainId, setChainId] = useState(31337)
+  const [chainIndex, setChainIndex] = useState(1)
+  const [chainId, setChainId] = useState(5)
 
   useEffect(() => {
     let keys = Object.keys(walletConfig)

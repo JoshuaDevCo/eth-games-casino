@@ -8,7 +8,7 @@ const Sidebar = () => {
   useOnClickOutside(gamesBarRef, () => setGamesBar(false));
   return (
     <>
-      <div
+      {/* <div
         ref={gamesBarRef}
         className={`w-[170px] md:flex justify-start items-start hidden flex-col  h-[calc(100%_-_40px)] top-10 ${
           gamesBar ? "left-[100px] " : "-left-full "
@@ -38,7 +38,7 @@ const Sidebar = () => {
           name="Roulette"
           link="/roulette"
         />
-      </div>
+      </div> */}
       <div className="py-[30px] md:flex hidden sidebar overflow-y-auto overflow-x-hidden sticky top-0 h-screen w-full bg-dark  z-50 justify-between items-center flex-col gap-5">
         <Link to="/">
           <img
@@ -48,7 +48,7 @@ const Sidebar = () => {
           />
         </Link>
         <div className="  flex gap-5 justify-center items-center flex-col w-full">
-          <SidebarItem
+          {/* <SidebarItem
             ico="/sidebar/games.svg"
             activeIco="/sidebar/games-active.svg"
             name="Games"
@@ -81,6 +81,30 @@ const Sidebar = () => {
             activeIco="/sidebar/contest-active.svg"
             name="Contest"
             activeClasses="w-[80px] left-1/2 top-0"
+          /> */}
+          <GamesLink
+            setGamesBar={setGamesBar}
+            ico="/sidebar/rock-paper.svg"
+            name="RPS"
+            link="/rps"
+          />
+          <GamesLink
+            ico="/sidebar/dice.svg"
+            setGamesBar={setGamesBar}
+            name="Dice"
+            link="/dice"
+          />
+          <GamesLink
+            ico="/sidebar/coin-flip.svg"
+            setGamesBar={setGamesBar}
+            name="Coin Flip"
+            link="/coin"
+          />
+          <GamesLink
+            ico="/sidebar/roulette.svg"
+            setGamesBar={setGamesBar}
+            name="Roulette"
+            link="/roulette"
           />
         </div>
         <div className="opacity-0"></div>
@@ -119,6 +143,7 @@ const SidebarItem = ({
     </div>
   );
 };
+
 const GamesLink = ({ ico, name, link, setGamesBar }) => {
   return (
     <Link

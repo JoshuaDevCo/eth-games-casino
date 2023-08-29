@@ -41,7 +41,7 @@ const walletConfig =
             symbol: 'ETH',
             decimals: 18
         },
-        rpcUrls: ['https://goerli.infura.io/v3/'],
+        rpcUrls: ['https://goerli.infura.io/v3/f2c3624a719d49cf83f59034a3ed28dd'],
         blockUrls: ['https://goerli.etherscan.io'],
         apiUrl: 'https://goerli.infura.io/v3/',
         apiKey: 'f2c3624a719d49cf83f59034a3ed28dd',
@@ -62,6 +62,12 @@ const walletConfig =
             decimals: 18
         },
         rpcUrls: ['http://localhost:8545/'],
+        blockUrls: ['https://goerli.etherscan.io'],
+
+        ex: {
+            dex: 'https://app.uniswap.org/#/swap',
+            docs: '/'
+        }
     },
 }
 
