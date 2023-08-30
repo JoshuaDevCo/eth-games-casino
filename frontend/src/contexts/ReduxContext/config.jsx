@@ -1,7 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { createTransform, persistStore } from "redux-persist"
 import persistReducer from "redux-persist/es/persistReducer"
-import tokenSlice from "./reducers/token"
 import vaultSlice from "./reducers/vault"
 import chainSlice from './reducers/chain'
 import diceSlice from './reducers/dice'
@@ -13,7 +12,6 @@ import storage from "redux-persist/lib/storage"
 import { stringify, parse } from "flatted"
 
 const allReducers = {
-  token: tokenSlice,
   vault: vaultSlice,
   chain: chainSlice,
   dice: diceSlice,

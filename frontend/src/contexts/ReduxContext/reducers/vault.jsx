@@ -22,23 +22,8 @@ const vault = createSlice({
     setBalance: (state, action) => {
       state.balance = action.payload
     },
-    setDepositedUSDT: (state, action) => {
-      state.depositedUSDT = action.payload
-    },
-    setPendingUSDT: (state, action) => {
-        state.pendingUSDT = action.payload
-    },
-    setClaimedUSDT: (state, action) => {
-        state.claimedUSDT = action.payload
-    },
     setVaultAllowance: (state, action) => {
       state.vaultAllowance = action.payload
-  },
-    setUntilNextWithdraw: (state, action) => {
-        state.untilNextWithdraw = action.payload
-    },
-    setWithdrawSteps: (state, action) => {
-        state.withdrawSteps = action.payload
     },
     setVaultCap: (state, action) => {
       state.vaultCap = action.payload
@@ -46,6 +31,6 @@ const vault = createSlice({
   },
 })
 
-export const { setAddress, setBalance, setDepositedUSDT, setPendingUSDT, setClaimedUSDT, setVaultAllowance, setUntilNextWithdraw, setWithdrawSteps, setVaultCap } = vault.actions
+export const { setAddress, setBalance, setVaultAllowance, setVaultCap } = vault.actions
 
 export default vault.reducer

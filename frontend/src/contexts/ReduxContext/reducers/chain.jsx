@@ -78,23 +78,8 @@ const chain = createSlice({
     setBlockUrl: (state, action) => {
       state.blockUrl = action.payload
     },
-    setWETH: (state, action) => {
-      state.contracts.WETH = action.payload
-    },
-    setFactory: (state, action) => {
-      state.contracts.factory = action.payload
-    },
-    setRouter: (state, action) => {
-      state.contracts.router = action.payload
-    },
     setUSDT: (state, action) => {
       state.contracts.usdt = action.payload
-    },
-    setToken: (state, action) => {
-      state.contracts.token = action.payload
-    },
-    setSArbet: (state, action) => {
-      state.contracts.sArbet = action.payload
     },
     setConsole: (state, action) => {
       state.contracts.console = action.payload
@@ -150,12 +135,7 @@ export const {
   setNativeCurrency,
   setRPCUrl,
   setBlockUrl,
-  setWETH,
-  setFactory,
-  setRouter,
   setUSDT,
-  setToken,
-  setSArbet,
   setConsole,
   setVault,
   setRNG,
